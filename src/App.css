@@ -9,6 +9,7 @@ html {
 body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  transition: background 260ms ease;
 }
 
 #root {
@@ -26,6 +27,12 @@ main {
   min-height: 100svh;
   margin: 0;
   padding: 28px;
+  background: #fafafa;
+  transition: background 260ms ease;
+}
+
+main.darkMode {
+  background: #050505;
 }
 
 h1 {
@@ -39,8 +46,13 @@ h1 {
   font-weight: 400;
   letter-spacing: 0;
   transition:
+    color 260ms ease,
     font-size 260ms ease,
     transform 90ms ease;
+}
+
+main.darkMode h1 {
+  color: #f7f7f7;
 }
 
 h1.isPulsing {
@@ -48,7 +60,8 @@ h1.isPulsing {
 }
 
 .growButton,
-.shrinkButton {
+.shrinkButton,
+.darkButton {
   position: fixed;
   bottom: 28px;
   display: grid;
@@ -73,9 +86,44 @@ h1.isPulsing {
   font-weight: 300;
 }
 
+.darkButton {
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #111;
+  background: transparent;
+  transform: translateX(-50%);
+  transition:
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.darkMode .darkButton {
+  border-color: #f7f7f7;
+  background: #f7f7f7;
+}
+
 .growButton:hover,
 .shrinkButton:hover {
   color: #777;
+}
+
+.darkButton:hover {
+  background: #111;
+}
+
+.darkMode .growButton,
+.darkMode .shrinkButton {
+  color: #f7f7f7;
+}
+
+.darkMode .growButton:hover,
+.darkMode .shrinkButton:hover {
+  color: #8a8a8a;
+}
+
+.darkMode .darkButton:hover {
+  background: transparent;
 }
 
 .growButton:disabled,
@@ -94,12 +142,22 @@ h1.isPulsing {
   animation: messageFade 1400ms ease both;
 }
 
+.darkMode .message {
+  color: #a8a8a8;
+}
+
 .message.right {
   right: 28px;
 }
 
 .message.left {
   left: 28px;
+}
+
+.message.center {
+  left: 50%;
+  transform: translateX(-50%);
+  animation-name: messageCenterFade;
 }
 
 @keyframes messageFade {
@@ -113,5 +171,19 @@ h1.isPulsing {
   78% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes messageCenterFade {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 4px);
+  }
+
+  18%,
+  78% {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 }

@@ -7,6 +7,7 @@ function App() {
   const [growClicks, setGrowClicks] = useState(0);
   const [minusClicks, setMinusClicks] = useState(0);
   const [isPulsing, setIsPulsing] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [message, setMessage] = useState(null);
   const growthRef = useRef(0);
   const minusBoostRef = useRef(0);
@@ -71,8 +72,13 @@ function App() {
     }
   }
 
+  function handleDarkMode() {
+    setIsDarkMode((currentMode) => !currentMode);
+    showTemporaryMessage("welcome to the darkside", "center");
+  }
+
   return (
-    <main>
+    <main className={isDarkMode ? "darkMode" : undefined}>
       <h1
         className={isPulsing ? "isPulsing" : undefined}
         style={{ "--growth": growth, "--minus-boost": `${minusBoost}rem` }}
@@ -90,6 +96,13 @@ function App() {
       >
         -
       </button>
+
+      <button
+        className="darkButton"
+        type="button"
+        onClick={handleDarkMode}
+        aria-label="Toggle dark mode"
+      />
 
       <button
         className="growButton"
