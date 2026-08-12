@@ -61,9 +61,9 @@ h1.isPulsing {
 
 .growButton,
 .shrinkButton,
-.darkButton {
+.darkButton,
+.resetButton {
   position: fixed;
-  bottom: 28px;
   display: grid;
   place-items: center;
   width: 36px;
@@ -74,6 +74,11 @@ h1.isPulsing {
   color: #111;
   font: 400 1.35rem/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
   cursor: pointer;
+}
+
+.growButton,
+.shrinkButton {
+  bottom: 28px;
 }
 
 .growButton {
@@ -88,6 +93,7 @@ h1.isPulsing {
 
 .darkButton {
   left: 50%;
+  bottom: 39.5px;
   width: 13px;
   height: 13px;
   border: 1px solid #111;
@@ -160,6 +166,14 @@ h1.isPulsing {
   animation-name: messageCenterFade;
 }
 
+.message.top {
+  top: 68px;
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-name: messageCenterFade;
+}
+
 @keyframes messageFade {
   0%,
   100% {
@@ -172,6 +186,27 @@ h1.isPulsing {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.resetButton {
+  top: 28px;
+  left: 50%;
+  color: #111;
+  font-size: 1.05rem;
+  font-weight: 300;
+  transform: translateX(-50%);
+}
+
+.resetButton:hover {
+  color: #777;
+}
+
+.darkMode .resetButton {
+  color: #f7f7f7;
+}
+
+.darkMode .resetButton:hover {
+  color: #8a8a8a;
 }
 
 @keyframes messageCenterFade {

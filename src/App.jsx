@@ -77,6 +77,21 @@ function App() {
     showTemporaryMessage("welcome to the darkside", "center");
   }
 
+  function handleReset() {
+    window.clearTimeout(pulseTimer.current);
+
+    growthRef.current = 0;
+    minusBoostRef.current = 0;
+    minusClicksRef.current = 0;
+    setGrowth(0);
+    setMinusBoost(0);
+    setGrowClicks(0);
+    setMinusClicks(0);
+    setIsPulsing(false);
+    setIsDarkMode(false);
+    showTemporaryMessage("back at it", "top");
+  }
+
   return (
     <main className={isDarkMode ? "darkMode" : undefined}>
       <h1
@@ -87,6 +102,15 @@ function App() {
       </h1>
 
       {message && <p className={`message ${message.side}`}>{message.text}</p>}
+
+      <button
+        className="resetButton"
+        type="button"
+        onClick={handleReset}
+        aria-label="Reset"
+      >
+        ×
+      </button>
 
       <button
         className="shrinkButton"
