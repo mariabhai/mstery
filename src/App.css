@@ -32,16 +32,24 @@ h1 {
   margin: 0;
   color: #111;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: calc(clamp(0.3rem, 1.2vw, 0.8rem) + (var(--growth) * 0.35rem));
+  font-size: calc(
+    clamp(0.3rem, 1.2vw, 0.8rem) + (var(--growth) * 0.35rem) + var(--minus-boost)
+  );
   line-height: 1;
   font-weight: 400;
   letter-spacing: 0;
-  transition: font-size 220ms ease;
+  transition:
+    font-size 260ms ease,
+    transform 90ms ease;
 }
 
-.growButton {
+h1.isPulsing {
+  transform: scale(1.9);
+}
+
+.growButton,
+.shrinkButton {
   position: fixed;
-  right: 28px;
   bottom: 28px;
   display: grid;
   place-items: center;
@@ -55,19 +63,43 @@ h1 {
   cursor: pointer;
 }
 
-.growButton:hover {
+.growButton {
+  right: 28px;
+}
+
+.shrinkButton {
+  left: 28px;
+  font-size: 1.75rem;
+  font-weight: 300;
+}
+
+.growButton:hover,
+.shrinkButton:hover {
   color: #777;
+}
+
+.growButton:disabled,
+.shrinkButton:disabled {
+  color: #bbb;
+  cursor: default;
 }
 
 .message {
   position: fixed;
-  right: 28px;
   bottom: 70px;
   margin: 0;
   color: #777;
   font-size: 0.78rem;
   line-height: 1;
   animation: messageFade 1400ms ease both;
+}
+
+.message.right {
+  right: 28px;
+}
+
+.message.left {
+  left: 28px;
 }
 
 @keyframes messageFade {
